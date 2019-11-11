@@ -17,7 +17,7 @@ class CreateCustomersTable extends Migration
             $table->string('title', 10);
             $table->string('fname', 30);
             $table->string('lname', 30);
-            $table->unsignedInteger('customer_id')->autoIncrement()->primary();
+            $table->unsignedInteger('customer_id')->autoIncrement();
             $table->timestamps();
         });
     }
