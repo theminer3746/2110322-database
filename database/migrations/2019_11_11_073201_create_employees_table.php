@@ -22,7 +22,7 @@ class CreateEmployeesTable extends Migration
             $table->string('position', 20);
             $table->date('employ_date');
             $table->unsignedInteger('salary');
-            $table->string('contact', 12);
+            $table->string('contact', 30);
         });
     }
 
