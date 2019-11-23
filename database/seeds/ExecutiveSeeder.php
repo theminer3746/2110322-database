@@ -12,7 +12,7 @@ class ExecutiveSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for($i = 0; $i < 10; $i++){
+        for($i = 0; $i < 3; $i++){
             DB::table('employees')->insert([
                 'position' => 'executive',
                 'ssn' => sprintf("%013d", rand(0, 9999999999999)),
@@ -25,11 +25,11 @@ class ExecutiveSeeder extends Seeder
             ]);
         }
 
-        $sales = DB::table('employees')->where('position', 'executive')->get();
+        $execs = DB::table('employees')->where('position', 'executive')->get();
 
-        foreach($sales as $sale){
+        foreach($execs as $exec){
             DB::table('executives')->insert([
-                'executive_ssn' => $sale->ssn,
+                'executive_ssn' => $exec->ssn,
                 'executive_rank' => 'Manager',
             ]);
         }
