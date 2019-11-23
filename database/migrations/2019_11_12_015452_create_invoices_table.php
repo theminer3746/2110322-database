@@ -28,6 +28,11 @@ class CreateInvoicesTable extends Migration
                 ->references('address_id')
                 ->on('customer_addresses')
                 ->onDelete('cascade');
+            $table->unsignedInteger('order_id');
+            $table->foreign('order_id')
+                ->references('order_id')
+                ->on('customer_orders')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
