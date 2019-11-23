@@ -15,6 +15,14 @@ class CreateCustomerOrdersTable extends Migration
     {
         Schema::create('customer_orders', function (Blueprint $table) {
             $table->unsignedInteger('order_id')->autoIncrement();
+            $table->unsignedInteger('customer_id');
+            $table->foreign('customer_id')
+                ->references('customer_id')
+                ->on('customers');
+            $table->char('sale_staff_ssn', 13);
+            $table->foreign('sale_staff_ssn')
+                ->references('sale_staff_ssn')
+                ->on('sale_staffs');
             $table->timestamp('order_date');
             $table->unsignedInteger('total_price');
             $table->timestamps();
