@@ -22,7 +22,7 @@ class CreateSupplierAddressesTable extends Migration
                 ->onDelete('cascade');
             $table->string('line_1', 50);
             $table->string('line_2', 50)->nullable();
-            $table->string('city', 20);
+            $table->string('city', 50);
             $table->char('country', 3);
             $table->string('postal_code', 10);
             $table->timestamps();
