@@ -15,6 +15,10 @@ class CreateMarketingSchemesTable extends Migration
     {
         Schema::create('marketing_schemes', function (Blueprint $table) {
             $table->unsignedInteger('scheme_id')->autoIncrement();
+            $table->char('executive_ssn', 13);
+            $table->foreign('executive_ssn')
+                ->references('executive_ssn')
+                ->on('executives');
             $table->timestamp('start_time');
             $table->timestamp('end_time');
             $table->string('type', 15);
