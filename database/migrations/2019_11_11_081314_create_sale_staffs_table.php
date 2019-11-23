@@ -15,7 +15,10 @@ class CreateSaleStaffsTable extends Migration
     {
         Schema::create('sale_staffs', function (Blueprint $table) {
             $table->char('sale_staff_ssn', 13);
-            $table->foreign('sale_staff_ssn')->references('ssn')->on('employees')->onDelete('cascade');
+            $table->foreign('sale_staff_ssn')
+                ->references('ssn')
+                ->on('employees')
+                ->onDelete('cascade');
             $table->unsignedInteger('sales_amount');
             $table->timestamps();
         });

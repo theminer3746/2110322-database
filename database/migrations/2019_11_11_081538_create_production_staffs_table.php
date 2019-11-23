@@ -15,7 +15,10 @@ class CreateProductionStaffsTable extends Migration
     {
         Schema::create('production_staffs', function (Blueprint $table) {
             $table->char('production_staff_ssn', 13);
-            $table->foreign('production_staff_ssn')->references('ssn')->on('employees')->onDelete('cascade');
+            $table->foreign('production_staff_ssn')
+                ->references('ssn')
+                ->on('employees')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

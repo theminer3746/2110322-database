@@ -15,7 +15,10 @@ class CreateExecutivesTable extends Migration
     {
         Schema::create('executives', function (Blueprint $table) {
             $table->char('executive_ssn', 13);
-            $table->foreign('executive_ssn')->references('ssn')->on('employees')->onDelete('cascade');
+            $table->foreign('executive_ssn')
+                ->references('ssn')
+                ->on('employees')
+                ->onDelete('cascade');
             $table->string('executive_rank', 20);
             $table->timestamps();
         });
