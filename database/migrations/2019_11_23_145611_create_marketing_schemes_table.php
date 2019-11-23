@@ -17,6 +17,9 @@ class CreateMarketingSchemesTable extends Migration
             $table->unsignedInteger('scheme_id')->autoIncrement();
             $table->timestamp('start_time');
             $table->timestamp('end_time');
+            $table->string('type', 15);
+            $table->string('advertisement_detail', 2000)->nullable();
+            $table->string('promotion_detail', 2000)->nullable();
             $table->timestamps();
         });
     }
