@@ -14,7 +14,6 @@ class CreatePromotionIncludesProductRelation extends Migration
     public function up()
     {
         Schema::create('promotion_includes_product_relation', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->unsignedInteger('scheme_id');
             $table->foreign('scheme_id')
                 ->references('scheme_id')
@@ -27,6 +26,7 @@ class CreatePromotionIncludesProductRelation extends Migration
                 ->on('products')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->primary(['scheme_id', 'product_id'], 'id');
             $table->timestamps();
         });
     }

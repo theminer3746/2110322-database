@@ -14,7 +14,6 @@ class CreateEmployeeWorkForDepartmentRelation extends Migration
     public function up()
     {
         Schema::create('employee_work_for_department_relation', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->char('ssn', 13);
             $table->foreign('ssn')
                 ->references('ssn')
@@ -23,6 +22,7 @@ class CreateEmployeeWorkForDepartmentRelation extends Migration
             $table->foreign('department_id')
                 ->references('department_id')
                 ->on('departments');
+            $table->primary(['ssn', 'department_id'], 'id');
             $table->date('start_date');
             $table->timestamps();
         });

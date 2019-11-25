@@ -14,7 +14,6 @@ class CreateProductsHasMeterialsRelation extends Migration
     public function up()
     {
         Schema::create('products_has_meterials_relation', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->unsignedSmallInteger('material_id');
             $table->foreign('material_id')
                 ->references('material_id')
@@ -25,6 +24,7 @@ class CreateProductsHasMeterialsRelation extends Migration
                 ->references('product_id')
                 ->on('products')
                 ->onUpdate('cascade');
+            $table->primary(['material_id', 'product_id'], 'id');
             $table->timestamps();
         });
     }

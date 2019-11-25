@@ -14,7 +14,6 @@ class CreateProductOperateOnCustomerOrderRelation extends Migration
     public function up()
     {
         Schema::create('product_operate_on_customer_order_relation', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->unsignedInteger('order_id');
             $table->foreign('order_id')
                 ->references('order_id')
@@ -24,6 +23,7 @@ class CreateProductOperateOnCustomerOrderRelation extends Migration
             $table->foreign('product_id')
                 ->references('product_id')
                 ->on('products');
+            $table->primary(['order_id', 'product_id'], 'id');
             $table->unsignedSmallInteger('amount');
             $table->timestamps();
         });

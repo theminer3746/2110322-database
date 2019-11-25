@@ -14,7 +14,6 @@ class CreateSupplierOrdersSuppliesMaterialsRelation extends Migration
     public function up()
     {
         Schema::create('supplier_orders_supplies_materials_relation', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->unsignedSmallInteger('material_id');
             $table->foreign('material_id')
                 ->references('material_id')
@@ -23,6 +22,7 @@ class CreateSupplierOrdersSuppliesMaterialsRelation extends Migration
             $table->foreign('order_id')
                 ->references('order_id')
                 ->on('supplier_orders');
+            $table->primary(['material_id', 'order_id'], 'id');
             $table->timestamps();
         });
     }
