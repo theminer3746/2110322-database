@@ -23,6 +23,11 @@ class CreateCustomerOrdersTable extends Migration
             $table->foreign('sale_staff_ssn')
                 ->references('sale_staff_ssn')
                 ->on('sale_staffs');
+            $table->unsignedInteger('address_id');
+            $table->foreign('address_id')
+                ->references('address_id')
+                ->on('customer_addresses')
+                ->onDelete('cascade');
             $table->timestamp('order_date');
             $table->unsignedInteger('total_price')->nullable();
             $table->timestamps();
