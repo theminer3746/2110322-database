@@ -13,7 +13,7 @@ class CustomerSeeder extends Seeder
     public function run(Faker $faker)
     {
         $customer_count = 30;
-        $minAddressCount = 0;
+        $minAddressCount = 1;
         $maxAddressCount = 7;
 
         for($i = 0; $i < $customer_count; $i++){
