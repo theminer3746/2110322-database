@@ -12,8 +12,9 @@ class CustomerSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $customer_count = 3;
-        $address_count = 5;
+        $customer_count = 30;
+        $minAddressCount = 0;
+        $maxAddressCount = 7;
 
         for($i = 0; $i < $customer_count; $i++){
             DB::table('customers')->insert([
@@ -22,17 +23,19 @@ class CustomerSeeder extends Seeder
                 'title' => $faker->title,
                 'contact' => $faker->phoneNumber,
             ]);
-        }
 
-        for($i = 0; $i < $address_count; $i++){
-            DB::table('customer_addresses')->insert([
-                'customer_id' => rand(1, $customer_count - 1),
-                'line_1' => $faker->streetAddress,
-                'line_2' => null,
-                'city' => $faker->city,
-                'country' => $faker->countryISOAlpha3,
-                'postal_code' => $faker->postcode,
-            ]);
+            $customerId = DB::table('customers')->max('customer_id');
+
+            for($j = 0; $j < rand($minAddressCount, $maxAddressCount); $j++){
+                DB::table('customer_addresses')->insert([
+                    'customer_id' => $customerId,
+                    'line_1' => $faker->streetAddress,
+                    'line_2' => null,
+                    'city' => $faker->city,
+                    'country' => $faker->countryISOAlpha3,
+                    'postal_code' => $faker->postcode,
+                ]);
+            }
         }
     }
 }
