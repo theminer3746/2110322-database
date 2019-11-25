@@ -24,7 +24,7 @@ class CreateCustomerOrdersTable extends Migration
                 ->references('sale_staff_ssn')
                 ->on('sale_staffs');
             $table->timestamp('order_date');
-            $table->unsignedInteger('total_price');
+            $table->unsignedInteger('total_price')->nullable();
             $table->timestamps();
         });
     }
