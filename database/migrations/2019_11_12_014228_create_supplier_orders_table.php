@@ -19,6 +19,14 @@ class CreateSupplierOrdersTable extends Migration
             $table->timestamp('payment_date');
             $table->string('payment_method', 10);
             $table->unsignedInteger('total_price');
+            $table->char('production_staff_ssn', 13);
+            $table->foreign('production_staff_ssn')
+                ->references('production_staff_ssn')
+                ->on('production_staffs');
+            $table->unsignedInteger('supplier_id');
+            $table->foreign('supplier_id')
+                ->references('supplier_id')
+                ->on('suppliers');
             $table->timestamps();
         });
     }
