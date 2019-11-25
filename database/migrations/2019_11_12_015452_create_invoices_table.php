@@ -15,9 +15,9 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->unsignedInteger('invoice_id')->autoIncrement();
-            $table->timestamp('paid_at');
-            $table->string('payment_method', 20);
-            $table->string('additional_information', 2000);
+            $table->timestamp('paid_at')->nullable();
+            $table->string('payment_method', 20)->nullable()();
+            $table->string('additional_information', 2000)->nullable();
             $table->unsignedInteger('customer_id');
             $table->foreign('customer_id')
                 ->references('customer_id')
