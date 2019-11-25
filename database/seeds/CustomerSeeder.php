@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Hash;
 
 class CustomerSeeder extends Seeder
 {
@@ -21,6 +22,8 @@ class CustomerSeeder extends Seeder
                 'fname' => $faker->firstName,
                 'lname' => $faker->lastName,
                 'title' => $faker->title,
+                'username' => $faker->userName,
+                'password' => Hash::make('password'),
                 'contact' => $faker->phoneNumber,
             ]);
 
