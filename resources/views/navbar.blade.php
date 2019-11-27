@@ -27,7 +27,15 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                     <a class="navbar-item" href="/carts">
-                        Cart
+                        <?php 
+                            $totalInCart = 0;
+                            if(!is_null(Session::get('cart'))){
+                                foreach (Session::get('cart') as $amount) {
+                                    $totalInCart += $amount;
+                                }  
+                            }
+                        ?>
+                        Cart ({{$totalInCart}})                 
                     </a>
                     
                     @if (Session::get('loggedIn'))
@@ -43,7 +51,7 @@
                                     event.preventDefault();
                                     $.post("/logout", {
                                         '_token': '{{csrf_token()}}'
-                                    });
+                                    }, function () { window.location.href = "/" });
                                 });
                             });
                         </script>

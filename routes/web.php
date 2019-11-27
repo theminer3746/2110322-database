@@ -31,6 +31,9 @@ Route::get('products/{id}', function($id){
     return view('buy')->with('product', DB::table('products')->where('product_id', $id)->first());
 });
 
+Route::get('products/{id}/edit', 'ProductController@getEditPage');
+Route::post('products/{id}/edit', 'ProductController@edit');
+
 Route::get('carts', 'CartController@showCart');
 Route::post('carts', 'CartController@addItem');
 Route::patch('carts', 'CartController@updateItems');
@@ -42,4 +45,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('users/addresses', 'UserController@showAddressBook');
     Route::put('users/addresses', 'UserController@updateAddress');
     Route::post('users/addresses', 'UserController@addAddress');
+
+    Route::get('orders', 'CustomerOrderController@showOrderPage');
+
+    Route::get('invoices', 'InvoiceController@showAllInvoices');
 });

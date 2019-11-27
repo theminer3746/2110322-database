@@ -21,8 +21,8 @@
         </div>
     </div>
 </form> --}}
-<h1>blah</h1>
+{{-- <h1>blah</h1>
 <hr style="margin: 3 0 3rem;">
-<h2>AAAAAAAA</h2>
+<h2>AAAAAAAA</h2> --}}
 <a href="/users/addresses">Address book</a>
 @endsection

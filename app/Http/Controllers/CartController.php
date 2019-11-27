@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
     public function showCart(Request $request)
     {
-        //$cart = $request->session()->get('cart');
-        /*foreach($cart as $item => $amount){
-            $items[] = DB::table('products')->where('product_id', $item)->first();
-        }*/
+        $addresses = DB::table('customer_addresses')
+            ->where('customer_id', $request->session()->get('customer_id'))
+            ->get();
+
         return view('cart')
-            //->with('items', $items)
-            ;
+            ->with('addresses', $addresses);
     }
     
     public function addItem(Request $request)
@@ -63,14 +63,17 @@ class CartController extends Controller
             'order_date' => date('Y-m-d H:i:s'),
             'total_price' => null,
             'customer_id' => $request->session()->get('customer_id'),
-            'address_id' => $request->address_id,
+            'address_id' => $request->order_address_id,
             'sale_staff_ssn' => $saleStaffSsn,
         ]);
 
-        $invoiceId =DB::table('invoices')->insertGetId([
+        $invoiceId = DB::table('invoices')->insertGetId([
             'paid_at' => null,
             'additional_information' => null,
             'payment_method' => null,
+            'customer_id' => $request->session()->get('customer_id'),
+            'address_id' => $request->invoice_address_id,
+            'order_id' => $orderId,
         ]);
 
         $totalPrice = 0;
@@ -85,6 +88,6 @@ class CartController extends Controller
             'invoice_id' => $invoiceId,
         ]);
 
-        return redirect('/invoices');
+        return redirect('/orders');
     }
 }

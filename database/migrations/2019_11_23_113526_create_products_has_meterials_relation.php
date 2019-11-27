@@ -25,6 +25,7 @@ class CreateProductsHasMeterialsRelation extends Migration
                 ->on('products')
                 ->onUpdate('cascade');
             $table->primary(['material_id', 'product_id'], 'id');
+            $table->unsignedSmallInteger('amount');
             $table->timestamps();
         });
     }

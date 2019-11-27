@@ -260,12 +260,6 @@ class UserController extends Controller
         'ZWE'=>'Zimbabwe'
     ];
 
-    // public $isoArray = [
-    //     'SGP' => 'Singapore',
-    //     'THA' => 'Thailand',
-    //     'USA' => 'United States',
-    // ];
-
     public function showAddressBook(Request $request)
     {
         $customer_id = $request->session()->get('customer_id');
@@ -278,6 +272,17 @@ class UserController extends Controller
 
     public function updateAddress(Request $request)
     {
+        $customer_id = $request->session()->get('customer_id');
+
+        if($request->delete === "on"){
+            DB::table('customer_addresses')
+                ->where('customer_id', $customer_id)
+                ->where('address_id', $request->address_id)
+                ->delete();
+
+            return redirect()->back();
+        }
+
         $request->validate([
             'line_1' => 'required',
             'line_2' => '',
@@ -291,8 +296,6 @@ class UserController extends Controller
                 'country' => 'country not in the list',
             ]);
         }
-
-        $customer_id = $request->session()->get('customer_id');
 
         DB::table('customer_addresses')
             ->where('customer_id', $customer_id)

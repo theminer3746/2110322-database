@@ -43,15 +43,12 @@
                 <div class="control">
                     <div class="select">
                         <select name="country">
-                            {{-- @foreach ($countryList as $countryCode => $countryName)
+                            @foreach ($countryList as $countryCode => $countryName)
                                 @if ($countryCode === $address->country)
                                     <option value="{{$countryCode}}" selected>{{$countryName}}</option>    
                                 @else
                                     <option value="{{$countryCode}}">{{$countryName}}</option>  
                                 @endif
-                            @endforeach --}}
-                            @foreach ($countryList as $countryCode => $countryName)
-                                <option value="{{$countryCode}}" @if ($countryCode === $address->country) selected @endif>{{$countryName}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -70,13 +67,21 @@
             @csrf
             <div class="field">
                 <div class="control">
+                    <label class="checkbox">
+                        <input type="checkbox" name="delete"> Delete
+                    </label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
                     <button class="button is-link">Change</button>
                 </div>
             </div>
         </form>
         <hr style="margin: 3 0 3rem;"> 
     @endforeach
-    {{-- <form action="/users/addresses" method="post">
+    <h1 class="title is-2">Add new address</h1>
+    <form action="/users/addresses" method="post">
         <div class="field">
             <label class="label">
                 Line 1
@@ -129,5 +134,5 @@
                 <button class="button is-link">Add</button>
             </div>
         </div>
-    </form> --}}
+    </form>
 @endsection

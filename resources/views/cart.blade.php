@@ -28,10 +28,43 @@
                 @endforeach
             </tbody>
         </table>
-
-        <form action="cart/checkout" method="post"></form>
     @else
         <span>Your cart is empty</span>
     @endif
+</div>
+<hr style="margin: 3 0 3rem;"> 
+<div class="columns is-centered">
+    <form action="carts/checkout" method="post">
+        <div class="field">
+            <label class="label">Shipping address</label>
+            <div class="control">
+                <div class="select">
+                    <select name="order_address_id">
+                        @foreach ($addresses as $address)
+                            <option value="{{$address->address_id}}">{{$address->line_1}}, {{$address->line_2}}, {{$address->city}}, {{$address->country}}, {{$address->postal_code}}</option>>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Billing address</label>
+            <div class="control">
+                <div class="select">
+                    <select name="invoice_address_id">
+                        @foreach ($addresses as $address)
+                            <option value="{{$address->address_id}}">{{$address->line_1}}, {{$address->line_2}}, {{$address->city}}, {{$address->country}}, {{$address->postal_code}}</option>>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+        @csrf
+        <div class="field">
+            <div class="control">
+                <button class="button is-link">Checkout</button>
+            </div>
+        </div>
+    </form>
 </div>
 @endsection
